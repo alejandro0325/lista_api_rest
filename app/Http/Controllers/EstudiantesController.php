@@ -47,4 +47,21 @@ class EstudiantesController extends Controller
         return $e;
 
     }
+    public function destroy($id){
+        $e = Estudiante::find($id);
+        if(isset($e)){
+            $res=Estudiante::destroy($id);
+            if($res){
+            return response()->json([
+                "data"=>$e,
+                "mensaje"=>"Estudiante eliminado con exito.",
+            ]);
+            }
+        }else{
+            return response()->json([
+                "error"=>true,
+                "mensaje"=>"no existe el estudiante",
+            ]);
+        }
+    }
 }
